@@ -21,15 +21,32 @@ namespace Lr1
         public static Person AddPersonConsole()
         {
 
-            Console.Write($"Введите имя: ");
-            string Name = Console.ReadLine();
+            Console.Write($"Введите имя персоны: ");
+            string name = Console.ReadLine();
+            name = Person.ChecknamesSurenames(name);
 
-            Console.Write($"Введите фамилию: ");
+            Console.Write($"Введите фамилию персоны: ");
             string surname = Console.ReadLine();
+            surname = Person.ChecknamesSurenames(surname);
 
-            Console.Write($"Введите возраст: ");
-            int age = Convert.ToInt32(Console.ReadLine());
-
+            int age = 0;
+            while (true)
+            {
+                Console.Write($"Введите возраст персоны: ");
+                if (!int.TryParse(Console.ReadLine(), out age))
+                {
+                    Console.WriteLine("Возраст должен быть числом");
+                    continue;
+                }
+                else if (!Person.CheckAge(age))
+                {
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
             Console.Write($"Введите пол человека (1 - Мужской или 2 - Женский): ");
             int pregen = Convert.ToInt32(Console.ReadLine());
             Gender gen = Gender.Male;
@@ -44,7 +61,7 @@ namespace Lr1
                     break;
 
             }
-            return new Person(Name, surname, age, gen);
+            return new Person(name, surname, age, gen);
 
         }
 
