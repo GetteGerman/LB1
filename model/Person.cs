@@ -100,25 +100,21 @@ namespace Model
         /// </summary>
         /// <param name="name_surname">проверяеый элемент</param>
         /// <returns>возврощает имя</returns>
-        public static string ChecknamesSurenames(string name_surname)
+        public static bool ChecknamesSurenames(string name_surname)
         {
-            {
-                while (true)
-                {
-
+            bool flag = false;
                     Regex regex = new Regex(@"[А-я,A-z-]+");
                     if (!regex.IsMatch(name_surname))
                     {
                         Console.WriteLine("Имя и фамилия должны содержать " +
                             "толко русские или английскик буквы");
-                        continue;
+                        return flag;
                     }
                     else
                     {
-                        return name_surname;
+                flag = true;
+                        return flag;
                     }
-                }
-            }
         }
         /// <summary>
         /// Проверка регистра

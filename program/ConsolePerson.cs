@@ -23,12 +23,35 @@ namespace Lr1
 
             Console.Write($"Введите имя персоны: ");
             string name = Console.ReadLine();
-            name = Person.ChecknamesSurenames(name);
+            while (true)
+            {
+
+                if (Person.ChecknamesSurenames(name))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Write($"Введите корректно имя персоны: ");
+                    name = Console.ReadLine();
+                }
+            }
 
             Console.Write($"Введите фамилию персоны: ");
             string surname = Console.ReadLine();
-            surname = Person.ChecknamesSurenames(surname);
-
+            while(true)
+            {
+                
+                if (Person.ChecknamesSurenames(surname))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Write($"Введите корректно фамилию персоны: ");
+                    surname = Console.ReadLine();
+                }
+            }
             int age = 0;
             while (true)
             {
