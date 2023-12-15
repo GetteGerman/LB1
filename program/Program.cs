@@ -22,6 +22,8 @@ namespace Demo
             // будет по три человека.
             // b.Выведите содержимое каждого списка на экран с
             //соответствующими подписями списков.
+            //TODO: duplication
+            //TODO: rename
             PersonList list1 = new PersonList();
             Console.WriteLine("\t\t\tСписок 1.\n");
             for (int i = 0; i < 3; i++)
@@ -29,7 +31,9 @@ namespace Demo
                 list1.Add(RandomPerson.GetRandomPerson());
             }
             ConsolePerson.Print(list1);
+            //TODO: duplication
             Console.WriteLine();
+            //TODO: rename
             var listTwo = new PersonList();
             Console.WriteLine("\t\t\tСписок 2.\n");
             for (int i = 0; i < 3; i++)

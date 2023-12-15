@@ -12,10 +12,12 @@ namespace Model
     /// </summary>
     public class Person
     {
+        //TODO: RSDN
         /// <summary>
         /// введенный возраст.
         /// </summary>
         private int _age;
+
         /// <summary>
         /// имя персоны.
         /// </summary>
@@ -64,8 +66,14 @@ namespace Model
         {
             Name = name;
             Surname = surname;
+            //TODO: check?
             _age = age;
             Gender = gender;
+        }
+
+        public Person() : this ("Ivan", "Ivanov", 0, Gender.Male)
+        {
+            
         }
         /// <summary>
         /// проверка возраста на входимость в пределы
@@ -74,9 +82,12 @@ namespace Model
         /// <returns> входит или нет</returns>
         public static bool CheckAge(int age)
         {
+            //TODO: remove
             bool flag = false;
             try
             {
+                //TODO: const
+                //TODO: logical and
                 if (age > 0 & age < 120)
                 {
                     flag = true;
@@ -84,15 +95,15 @@ namespace Model
                 }
                 else
                 {
+                    //TODO: exception
                     throw new Exception("Значение возраста должно быть в диапазоне от 0 до 120");
                 }
             }
             catch (Exception ex)
             {
+                //TODO: remove
                 Console.WriteLine($"Ошибка: {ex.Message}");
                 return flag;
-
-
             }
         }
         /// <summary>
@@ -102,6 +113,8 @@ namespace Model
         /// <returns>возврощает имя</returns>
         public static bool ChecknamesSurenames(string name_surname)
         {
+            //TODO: RSDN
+            //TODO: remove
             bool flag = false;
                     Regex regex = new Regex(@"[А-я,A-z-]+");
                     if (!regex.IsMatch(name_surname))
@@ -117,6 +130,7 @@ namespace Model
                         return flag;
                     }
         }
+
         /// <summary>
         /// Проверка регистра
         /// </summary>

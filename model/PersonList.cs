@@ -19,7 +19,7 @@ namespace Model
         /// <summary>
         /// Добавление элемента.
         /// </summary>
-        /// <param name="people"></param>
+        /// <param name="people">//TODO:</param>
         public void Add(Person person)
         {
             _people.Add(person);
@@ -28,7 +28,7 @@ namespace Model
         /// <summary>
         /// Удаление всего списка.
         /// </summary>
-        /// <param name="people"></param>
+        /// <param name="people">//TODO:</param>
         public void DeleteAll()
         {
             _people.Clear();
@@ -37,8 +37,8 @@ namespace Model
         /// <summary>
         /// Удалять элементы по индексу.
         /// </summary>
-        /// <param name="people"></param>
-        /// <param name="index"></param>
+        /// <param name="people">//TODO:</param>
+        /// <param name="index">//TODO:</param>
         public void DeleteByIndex(int index)
         {
             _people.RemoveAt(index);
@@ -48,10 +48,11 @@ namespace Model
         /// Удалить выбранный элемент списка.
         /// По фамилии.
         /// </summary>
-        /// <param name="people"></param>
-        /// <returns></returns>
+        /// <param name="people">//TODO:</param>
+        /// <returns>//TODO:</returns>
         public int DeleteBySurname(string surname)
         {
+
             // Удаляет элементы из списка по условию
             // и возвращает кол-во удалений.
             int count = _people.RemoveAll(s => s.Surname == surname);
@@ -60,8 +61,8 @@ namespace Model
         /// <summary>
         /// Искать элемент по указанному индексу.
         /// </summary>
-        /// <param name="people"></param>
-        /// <param name="index"></param>
+        /// <param name="people">//TODO:</param>
+        /// <param name="index">//TODO:</param>
         public Person FindByIndex(int index)
         {
             int countIndex = _people.Count - 1;
@@ -82,8 +83,8 @@ namespace Model
         /// Вернуть индекс элемента (по фамилии) при
         /// наличии его в списке.
         /// </summary>
-        /// <param name="people"></param>
-        /// <returns></returns>
+        /// <param name="people">//TODO:</param>
+        /// <returns>//TODO:</returns>
         public int FindIndex(string surname)
         {
             int index = _people.FindIndex(s => s.Surname == surname);

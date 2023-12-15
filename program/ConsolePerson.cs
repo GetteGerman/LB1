@@ -21,6 +21,7 @@ namespace Lr1
         public static Person AddPersonConsole()
         {
 
+            //TODO: duplication
             Console.Write($"Введите имя персоны: ");
             string name = Console.ReadLine();
             while (true)
@@ -37,11 +38,11 @@ namespace Lr1
                 }
             }
 
+            //TODO: duplication
             Console.Write($"Введите фамилию персоны: ");
             string surname = Console.ReadLine();
             while(true)
-            {
-                
+            {                
                 if (Person.ChecknamesSurenames(surname))
                 {
                     break;
@@ -52,9 +53,11 @@ namespace Lr1
                     surname = Console.ReadLine();
                 }
             }
+
             int age = 0;
             while (true)
             {
+                //TODO: переделать на вызов внутренней проверки
                 Console.Write($"Введите возраст персоны: ");
                 if (!int.TryParse(Console.ReadLine(), out age))
                 {
@@ -71,6 +74,7 @@ namespace Lr1
                 }
             }
             Console.Write($"Введите пол человека (1 - Мужской или 2 - Женский): ");
+            //TODO:
             int pregen = Convert.ToInt32(Console.ReadLine());
             Gender gen = Gender.Male;
             switch (pregen)
