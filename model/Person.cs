@@ -106,13 +106,14 @@ namespace Model
                     Regex regex = new Regex(@"[А-я,A-z-]+");
                     if (!regex.IsMatch(name_surname))
                     {
-                        Console.WriteLine("Имя и фамилия должны содержать " +
+                    
+                Console.WriteLine("Имя и фамилия должны содержать " +
                             "толко русские или английскик буквы");
                         return flag;
                     }
                     else
                     {
-                flag = true;
+                        flag = true;
                         return flag;
                     }
         }

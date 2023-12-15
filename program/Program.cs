@@ -57,7 +57,7 @@ namespace Demo
                 " первого списка в конец второго списка.");
             Console.ReadKey();
 
-            listTwo.Add(list1.FindByIndex(1));
+            listTwo.Add(list1.FindByIndex(2));
 
             Console.WriteLine("\nСписок №1:");
             ConsolePerson.Print(list1);
