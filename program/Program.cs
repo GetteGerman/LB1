@@ -31,7 +31,9 @@ namespace Demo
             {
                 list1.Add(RandomPerson.GetRandomPerson());
                 list2.Add(RandomPerson.GetRandomPerson());
+                
             }
+
             ConsolePerson.Print(list1);
              Console.WriteLine();
             Console.WriteLine("\t\t\tСписок 2.\n");

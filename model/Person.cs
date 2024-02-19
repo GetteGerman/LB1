@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -43,9 +44,9 @@ namespace Model
             }
             set
             {
-                if (ChecknamesSurenames(value))
+                if (Checktype(value))
                 {
-                    _name = value;
+                    _name = ConvertFirstlatterToup(value);
                 }
             }
         }
@@ -60,9 +61,9 @@ namespace Model
             }
             set
             {
-                if (ChecknamesSurenames(value))
+                if (Checktype(value))
                 {
-                    _surname = value;
+                    _surname = ConvertFirstlatterToup(value);
                 }
             }
         }
@@ -127,45 +128,65 @@ namespace Model
             }
             else
             {
-                throw new Exception("Значение возраста должно быть в диапазоне от 0 до 120");
+                throw new ArgumentOutOfRangeException("Значение возраста должно быть в диапазоне от 0 до 120");
             }
         }
         /// <summary>
         /// Проверка на правильность впианных символов
         /// </summary>
         /// <param name="name_surname">проверяеый элемент</param>
-        /// <returns>возврощает имя</returns>
-        public static bool ChecknamesSurenames(string name_surname)
+        /// <returns>правильный ли тип введенной информации.</returns>
+        public static bool Checktype(string name_surname)
         {
+            Regex tir = new Regex(@"[-]");
             Regex regex = new Regex(@"[А-я,A-z,-]+");
+            Regex rus = new Regex(@"[А-я]+");
+            Regex eng = new Regex(@"[A-z]+");
             if (!regex.IsMatch(name_surname))
             {
-                Console.WriteLine("Имя и фамилия должны содержать " +
-                            "толко русские или английскик буквы");
-                return false;
+                throw new ArgumentException("Имя и фамилия должны содержать " +
+                            "только русские или английскик буквы");
+            }
+            else if (tir.IsMatch(name_surname))
+            {
+                string[] words = name_surname.Split(new char[] { '-' });
+                string word1 = words[0];
+                string word2 = words[1];
+                if  (!((rus.IsMatch(word1) && rus.IsMatch(word2))||
+                    (eng.IsMatch(word1) && eng.IsMatch(word2))))
+                {
+                    throw new ArgumentException("Имя/фамилия должны состоять только из русских " +
+                        "или только из английскийх букв");
+                }
+                return true;
+
             }
             else
             {
                 return true;
             }
         }
-
         /// <summary>
-        /// Проверка регистра
+        /// изменения регистра первой буквы.
         /// </summary>
-        /// <param name="namesurename"></param>
-        /// <returns></returns>
-        //public static string CheckRegister(string namesurename)
-        //{
-        //    Regex checkregex = new Regex(@"(\w)");
-        //    MatchCollection match = checkregex.Matches(namesurename);
-        //    foreach (Match i in match)
-        //    {
-        //        Console.WriteLine(i);
-        //        return i.Value;
-        //    }
-        //    return namesurename;
-        //}
+        /// <param name="word">изначальное слово.</param>
+        /// <returns>Измененный регистр слова.</returns>
+        public static string ConvertFirstlatterToup(string word)
+        {
+            word = word[0].ToString().ToUpper()+ word.Substring(1).ToLower();
+
+            Regex regex1 = new Regex(@"[-]");
+            if (regex1.IsMatch(word))
+            {
+                string[] words = word.Split(new char[] { '-' });
+                string word1 = words[0];
+                string word2 = words[1];
+                word1 = word1[0].ToString().ToUpper() + word1.Substring(1).ToLower();
+                word2 = word2[0].ToString().ToUpper() + word2.Substring(1).ToLower();
+                word = word1 + "-" + word2;
+            }
+            return word;
+        }
     }
 }
 

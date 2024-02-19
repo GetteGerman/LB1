@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Model;
 
 namespace Lr1
@@ -21,86 +22,79 @@ namespace Lr1
         public static Person AddPersonConsole()
         {
 
-            //TODO: duplication
-            Person person = new Person();
-            Console.Write($"Введите имя персоны: ");
-            string name = Console.ReadLine();
-           
-            while (true)
             {
-                try
-                {
-                    person.Name = name;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Ошибка: {e.Message}");
-                }
-                if (Person.ChecknamesSurenames(name))
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Write($"Введите корректно имя персоны: ");
-                    name = Console.ReadLine();
-                }
-            }
+                Person newperson = new Person();
 
-            //TODO: duplication
-            Console.Write($"Введите фамилию персоны: ");
-            string surname = Console.ReadLine();
-            try
+                var actionList = new List<Action>
             {
-                person.Surname = surname;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Ошибка: {e.Message}");
-            }
-            surname =Checkstring(surname);
+                (new Action(() =>
+                {
+                    Console.Write($"\nВведите имя человека: ");
+                    string name = Console.ReadLine();
+                    if ( Person.Checktype(name))
+                    {
+                        newperson.Name =Person.ConvertFirstlatterToup(name) ;
 
-            int age = 0;
-            while (true)
-            {
-                //TODO: переделать на вызов внутренней проверки
-                Console.Write($"Введите возраст персоны: ");
-                if (!int.TryParse(Console.ReadLine(), out age))
-                {
-                    Console.WriteLine("Возраст должен быть числом");
-                    continue;
-                }
-                else if (!Person.CheckAge(age))
-                {
-                    continue;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            Console.Write($"Введите пол человека (1 - Мужской или 2 - Женский): ");
-            //TODO:
-            int pregen = Convert.ToInt32(Console.ReadLine());
-            Gender gen = Gender.Male;
-            switch (pregen)
-            {
-                case 1:
-                    gen = Gender.Male;
-                    break;
-                case 2:
-                    gen = Gender.Female;
-                    break;
+                    }
 
+                })),
+                (new Action(() =>
+                {
+                    Console.Write($"Введите фамилию человека: ");
+                    string surname = Console.ReadLine();
+                    if ( Person.Checktype(surname))
+                    {
+                        newperson.Surname =Person.ConvertFirstlatterToup(surname) ;
+
+                    }
+                })),
+                (new Action(() =>
+                {
+                    Console.Write($"Введите возраст человека:");
+                    bool result = ushort.TryParse(Console.ReadLine(),
+                        out ushort age);
+                    if(result != true)
+                    {
+                        throw new ArgumentException("Возраст должен быть" +
+                            " положительным, введите ещё раз!");
+                    }
+                    if ( Person.CheckAge(age))
+                    {
+                        newperson.Age =age ;
+
+                    }
+                })),
+                (new Action(() =>
+                {
+                    Console.Write($"Введите пол человека:");
+                    string gender1 = Console.ReadLine();
+                    if (gender1 == "ж" || gender1 == "w")
+                    {
+                        newperson.Gender = Gender.Female;
+                    }
+                    else if (gender1 == "м" || gender1 == "m")
+                    {
+                        newperson.Gender = Gender.Male;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Введён некорректный" +
+                            " пол, введите м(m) или ж(w)!");
+                    }
+                }))
+            };
+
+                foreach (var action in actionList)
+                {
+                    ActionHandler(action);
+                }
+
+                return newperson;
             }
-            return new Person(name, surname, age, gen);
 
         }
 
-        /// <summary>
-        /// Вывод списка персон.
-        /// </summary>
-        /// <param name="personsList">Список персон.</param>
+        
         public static void Print(PersonList people)
         {
             int count = people.CountElementsList();
@@ -111,38 +105,27 @@ namespace Lr1
                 Console.WriteLine(pers.GetInfo());
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        private static string Checkstring(string str)
+
+        private static void ActionHandler(Action action)
         {
-            Person person = new Person();
             while (true)
             {
-                if (Person.ChecknamesSurenames(str))
+                try
                 {
-                    return str;
+                    action.Invoke();
+                    return;
                 }
-                else
+                catch (ArgumentOutOfRangeException exception)
                 {
-                    Console.Write($"Введите данные персоны корректно: ");
-                    str = Console.ReadLine();
+                    
+                }
+                catch (ArgumentException exception)
+                {
+
                 }
             }
         }
-        //private void ActionHandl(Action action)
-        //{
-        //    while (true)
-        //    {
-        //        try
-        //        {
 
-        //        }
-        //    }
-        //}
-        
 
-}
+    }
 }
