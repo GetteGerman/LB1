@@ -62,6 +62,7 @@ namespace Demo
             Console.ReadKey();
 
             listTwo.Add(list1.FindByIndex(2));
+            listTwo.Add()
 
             Console.WriteLine("\nСписок №1:");
             ConsolePerson.Print(list1);

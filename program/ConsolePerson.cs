@@ -24,9 +24,17 @@ namespace Lr1
             //TODO: duplication
             Console.Write($"Введите имя персоны: ");
             string name = Console.ReadLine();
+            Person person = new Person();
             while (true)
             {
-
+                try
+                {
+                    person.Name = name;  
+                }
+                catch(Exception e)              
+                {
+                    Console.WriteLine($"Ошибка: {e.Message}");
+                }
                 if (Person.ChecknamesSurenames(name))
                 {
                     break;
@@ -78,8 +86,7 @@ namespace Lr1
             int pregen = Convert.ToInt32(Console.ReadLine());
             Gender gen = Gender.Male;
             switch (pregen)
-
-            {
+            {            
                 case 1:
                     gen = Gender.Male;
                     break;
