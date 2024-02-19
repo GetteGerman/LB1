@@ -22,16 +22,17 @@ namespace Lr1
         {
 
             //TODO: duplication
+            Person person = new Person();
             Console.Write($"Введите имя персоны: ");
             string name = Console.ReadLine();
-            Person person = new Person();
+           
             while (true)
             {
                 try
                 {
-                    person.Name = name;  
+                    person.Name = name;
                 }
-                catch(Exception e)              
+                catch (Exception e)
                 {
                     Console.WriteLine($"Ошибка: {e.Message}");
                 }
@@ -49,18 +50,15 @@ namespace Lr1
             //TODO: duplication
             Console.Write($"Введите фамилию персоны: ");
             string surname = Console.ReadLine();
-            while(true)
-            {                
-                if (Person.ChecknamesSurenames(surname))
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Write($"Введите корректно фамилию персоны: ");
-                    surname = Console.ReadLine();
-                }
+            try
+            {
+                person.Surname = surname;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Ошибка: {e.Message}");
+            }
+            surname =Checkstring(surname);
 
             int age = 0;
             while (true)
@@ -86,7 +84,7 @@ namespace Lr1
             int pregen = Convert.ToInt32(Console.ReadLine());
             Gender gen = Gender.Male;
             switch (pregen)
-            {            
+            {
                 case 1:
                     gen = Gender.Male;
                     break;
@@ -113,5 +111,38 @@ namespace Lr1
                 Console.WriteLine(pers.GetInfo());
             }
         }
-    }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private static string Checkstring(string str)
+        {
+            Person person = new Person();
+            while (true)
+            {
+                if (Person.ChecknamesSurenames(str))
+                {
+                    return str;
+                }
+                else
+                {
+                    Console.Write($"Введите данные персоны корректно: ");
+                    str = Console.ReadLine();
+                }
+            }
+        }
+        //private void ActionHandl(Action action)
+        //{
+        //    while (true)
+        //    {
+        //        try
+        //        {
+
+        //        }
+        //    }
+        //}
+        
+
+}
 }

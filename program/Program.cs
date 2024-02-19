@@ -25,22 +25,17 @@ namespace Demo
             //TODO: duplication
             //TODO: rename
             PersonList list1 = new PersonList();
+            var list2 = new PersonList();
             Console.WriteLine("\t\t\tСписок 1.\n");
             for (int i = 0; i < 3; i++)
             {
                 list1.Add(RandomPerson.GetRandomPerson());
+                list2.Add(RandomPerson.GetRandomPerson());
             }
             ConsolePerson.Print(list1);
-            //TODO: duplication
-            Console.WriteLine();
-            //TODO: rename
-            var listTwo = new PersonList();
+             Console.WriteLine();
             Console.WriteLine("\t\t\tСписок 2.\n");
-            for (int i = 0; i < 3; i++)
-            {
-                listTwo.Add(RandomPerson.GetRandomPerson());
-            }
-            ConsolePerson.Print(listTwo);
+             ConsolePerson.Print(list2);
             Console.WriteLine();
             // c.Добавьте нового человека в первый список.
             Console.WriteLine("Добавим персону в 1-ый список. " +
@@ -61,14 +56,14 @@ namespace Demo
                 " первого списка в конец второго списка.");
             Console.ReadKey();
 
-            listTwo.Add(list1.FindByIndex(2));
-            listTwo.Add()
+            list2.Add(list1.FindByIndex(2));
+            
 
             Console.WriteLine("\nСписок №1:");
             ConsolePerson.Print(list1);
 
             Console.WriteLine("\nСписок №2:");
-            ConsolePerson.Print(listTwo);
+            ConsolePerson.Print(list2);
 
             // e.Удалите второго человека из первого списка. Покажите, что
             // удаление человека из первого списка
@@ -83,18 +78,18 @@ namespace Demo
             ConsolePerson.Print(list1);
 
             Console.WriteLine("\nСписок №2:");
-            ConsolePerson.Print(listTwo);
+            ConsolePerson.Print(list2);
 
             // f.Очистите второй список.
             Console.WriteLine("\n\t\tОчищение второго списка.");
             Console.ReadKey();
-            listTwo.DeleteAll();
+            list2.DeleteAll();
 
             Console.WriteLine("\nСписок №1:");
             ConsolePerson.Print(list1);
 
             Console.WriteLine("\nСписок №2:");
-            ConsolePerson.Print(listTwo);
+            ConsolePerson.Print(list2);
 
             Console.ReadKey();
 

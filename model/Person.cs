@@ -12,20 +12,60 @@ namespace Model
     /// </summary>
     public class Person
     {
-        //TODO: RSDN
         /// <summary>
         /// введенный возраст.
         /// </summary>
         private int _age;
-
+        /// <summary>
+        /// введенное имя.
+        /// </summary>
+        private string _name;
+        /// <summary>
+        /// введенная фамилия.
+        /// </summary>
+        private string _surname;
+        /// <summary>
+        /// максимальный возраст.
+        /// </summary>
+        private const int maxage=120;
+        /// <summary>
+        /// мнимальный возраст.
+        /// </summary>
+        private const int minage = 0;
         /// <summary>
         /// имя персоны.
         /// </summary>
-        public string Name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (ChecknamesSurenames(value))
+                {
+                    _name = value;
+                }
+            }
+        }
         /// <summary>
         /// фамилия персоны.
         /// </summary>
-        public string Surname;
+        public string Surname
+        {
+            get
+            {
+                return _surname;
+            }
+            set
+            {
+                if (ChecknamesSurenames(value))
+                {
+                    _surname = value;
+                }
+            }
+        }
         /// <summary>
         /// возраст персоны.
         /// </summary>
@@ -64,17 +104,16 @@ namespace Model
         /// <param name="gender">Гендер персоны.</param>
         public Person(string name, string surname, int age, Gender gender)
         {
-            Name = name;
-            Surname = surname;
+            _name = name;
+            _surname = surname;
             //TODO: check?
             _age = age;
             Gender = gender;
         }
-
-        public Person() : this ("Ivan", "Ivanov", 0, Gender.Male)
-        {
-            
-        }
+        /// <summary>
+        /// Конструктор по умолчанию.
+        /// </summary>
+        public Person() : this ("Ivan", "Ivanov", 0, Gender.Male) {}
         /// <summary>
         /// проверка возраста на входимость в пределы
         /// </summary>
@@ -82,28 +121,13 @@ namespace Model
         /// <returns> входит или нет</returns>
         public static bool CheckAge(int age)
         {
-            //TODO: remove
-            bool flag = false;
-            try
+            if (age > minage & age < maxage)
             {
-                //TODO: const
-                //TODO: logical and
-                if (age > 0 & age < 120)
-                {
-                    flag = true;
-                    return flag;
-                }
-                else
-                {
-                    //TODO: exception
-                    throw new Exception("Значение возраста должно быть в диапазоне от 0 до 120");
-                }
+                return true;
             }
-            catch (Exception ex)
+            else
             {
-                //TODO: remove
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return flag;
+                throw new Exception("Значение возраста должно быть в диапазоне от 0 до 120");
             }
         }
         /// <summary>
@@ -113,22 +137,17 @@ namespace Model
         /// <returns>возврощает имя</returns>
         public static bool ChecknamesSurenames(string name_surname)
         {
-            //TODO: RSDN
-            //TODO: remove
-            bool flag = false;
-                    Regex regex = new Regex(@"[А-я,A-z-]+");
-                    if (!regex.IsMatch(name_surname))
-                    {
-                    
+            Regex regex = new Regex(@"[А-я,A-z,-]+");
+            if (!regex.IsMatch(name_surname))
+            {
                 Console.WriteLine("Имя и фамилия должны содержать " +
                             "толко русские или английскик буквы");
-                        return flag;
-                    }
-                    else
-                    {
-                        flag = true;
-                        return flag;
-                    }
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         /// <summary>

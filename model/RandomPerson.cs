@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    //TODO: XML
+    /// <summary>
+    /// Создание рандмной персоны.
+    /// </summary>
     public static class RandomPerson
     {
         /// <summary>
