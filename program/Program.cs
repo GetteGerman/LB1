@@ -22,8 +22,6 @@ namespace Demo
             // будет по три человека.
             // b.Выведите содержимое каждого списка на экран с
             //соответствующими подписями списков.
-            //TODO: duplication
-            //TODO: rename
             PersonList list1 = new PersonList();
             var list2 = new PersonList();
             Console.WriteLine("\t\t\tСписок 1.\n");
