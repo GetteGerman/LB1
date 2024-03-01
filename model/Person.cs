@@ -28,17 +28,17 @@ namespace Model
         /// </summary>
         private string _surname;
 
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// максимальный возраст.
         /// </summary>
-        private const int maxage = 120;
+        public const int Maxage = 120;
 
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// мнимальный возраст.
         /// </summary>
-        private const int minage = 0;
+        public const int Minage = 0;
 
         /// <summary>
         /// имя персоны.
@@ -54,7 +54,7 @@ namespace Model
                 //BUG:
                 if (Checktype(value))
                 {
-                    _name = ConvertFirstlatterToup(value);
+                    _name = ConvertFirstLetterToUp(value);
                 }
             }
         }
@@ -70,10 +70,10 @@ namespace Model
             }
             set
             {
-                //BUG:
+                //BUG:+
                 if (Checktype(value))
                 {
-                    _surname = ConvertFirstlatterToup(value);
+                    _surname = ConvertFirstLetterToUp(value);
                 }
             }
         }
@@ -142,15 +142,16 @@ namespace Model
         /// <returns> входит или нет.</returns>
         public static bool CheckAge(int age)
         {
-            //TODO:
-            if (age > minage & age < maxage)
+            //TODO:+
+            if (age > Minage & age < Maxage)
             {
                 return true;
             }
             else
             {
-                //TODO: RSDN
-                throw new ArgumentOutOfRangeException("Значение возраста должно быть в диапазоне от 0 до 120");
+                //TODO: RSDN+
+                throw new ArgumentOutOfRangeException("Значение возраста" +
+                    " должно быть в диапазоне от 0 до 120");
             }
         }
 
@@ -161,17 +162,17 @@ namespace Model
         /// <returns>правильный ли тип введенной информации.</returns>
         public static bool Checktype(string name_surname)
         {
-            //TODO: RSDN
-            Regex tir = new Regex(@"[-]");
-            Regex regex = new Regex(@"[А-я,A-z,-]+");
+            //TODO: RSDN+
+            Regex tire = new Regex(@"[-]");
+            Regex checkletter = new Regex(@"[^А-яA-z-]+");
             Regex rus = new Regex(@"[А-я]+");
             Regex eng = new Regex(@"[A-z]+");
-            if (!regex.IsMatch(name_surname))
+            if (!checkletter.IsMatch(name_surname))
             {
                 throw new ArgumentException("Имя и фамилия должны содержать " +
                             "только русские или английскик буквы");
             }
-            else if (tir.IsMatch(name_surname))
+            else if (tire.IsMatch(name_surname))
             {
                 string[] words = name_surname.Split(new char[] { '-' });
                 string word1 = words[0];
@@ -219,24 +220,24 @@ namespace Model
         /// </summary>
         /// <param name="word">изначальное слово.</param>
         /// <returns>Измененный регистр слова.</returns>
-        public static string ConvertFirstlatterToup(string word)
+        public static string ConvertFirstLetterToUp(string word)
         {
-            //TODO: завести локальную переменную
-            word = word[0].ToString().ToUpper() + word.Substring(1).ToLower();
-            
-            //TODO: RSDN
-            Regex regex1 = new Regex(@"[-]");
-            if (regex1.IsMatch(word))
+            //TODO: завести локальную переменную+
+            string bufferword=word;
+            bufferword=word[0].ToString().ToUpper() + word.Substring(1).ToLower();
+            //TODO: RSDN+
+            Regex tire = new Regex(@"[-]");
+            if (tire.IsMatch(bufferword))
             {
-                string[] words = word.Split(new char[] { '-' });
-                string word1 = words[0];
-                string word2 = words[1];
-                word1 = word1[0].ToString().ToUpper() + word1.Substring(1).ToLower();
-                word2 = word2[0].ToString().ToUpper() + word2.Substring(1).ToLower();
-                word = word1 + "-" + word2;
+                string[] bufferwords = bufferword.Split(new char[] { '-' });
+                string firstword = bufferwords[0];
+                string secondword = bufferwords[1];
+                firstword = firstword[0].ToString().ToUpper() + firstword.Substring(1).ToLower();
+                secondword = secondword[0].ToString().ToUpper() + secondword.Substring(1).ToLower();
+                bufferword = firstword + "-" + secondword;
             }
 
-            return word;
+            return bufferword;
         }
     }
 }

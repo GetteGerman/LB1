@@ -34,7 +34,7 @@ namespace Lr1
                         string name = Person.CheckEmptorNull(Console.ReadLine());
                         if (Person.Checktype(name))
                         {
-                            newperson.Name = Person.ConvertFirstlatterToup(name) ;
+                            newperson.Name = Person.ConvertFirstLetterToUp(name) ;
 
                         }
 
@@ -45,13 +45,13 @@ namespace Lr1
                         string surname = Person.CheckEmptorNull(Console.ReadLine());
                         if (Person.Checktype(surname))
                         {
-                            newperson.Surname =Person.ConvertFirstlatterToup(surname) ;
+                            newperson.Surname =Person.ConvertFirstLetterToUp(surname) ;
                         }
                     }),
                     new Action(() =>
                     {
                         Console.Write($"Введите возраст человека:");
-                        //TODO: RSDN
+                        //TODO: RSDN+
                         bool parsedCorrectly = 
                             ushort.TryParse(Person.CheckEmptorNull(Console.ReadLine()),out ushort age);
                         if (!parsedCorrectly)
@@ -68,40 +68,27 @@ namespace Lr1
                     new Action(() =>
                     {
                         Console.Write($"Введите пол человека:");
-                        string gender1 = Person.CheckEmptorNull(Console.ReadLine());
-                        //TODO: switch-case
-                        //switch(gender1)
-                        //{
-                        //    case "ж":
-                        //    case "w":
-                        //    {
-                        //        newperson.Gender = Gender.Female;
-                        //        break;
-                        //    }
-                        //    case "м":
-                        //    case "m":
-                        //    {
-                        //        newperson.Gender = Gender.Female;
-                        //        break;
-                        //    }
-                        //    default:
-                        //    {
-                        //        throw new ArgumentException("Введён некорректный" +
-                        //            " пол, введите м(m) или ж(w)!");
-                        //    }
-                        //}
-                        if (gender1 == "ж" || gender1 == "w")
+                        string gender = Person.CheckEmptorNull(Console.ReadLine());
+                        //TODO: switch-case+
+                        switch(gender)
                         {
-                            newperson.Gender = Gender.Female;
-                        }
-                        else if (gender1 == "м" || gender1 == "m")
-                        {
-                            newperson.Gender = Gender.Male;
-                        }
-                        else
-                        {
-                            throw new ArgumentException("Введён некорректный" +
-                                " пол, введите м(m) или ж(w)!");
+                            case "ж":
+                            case "w":
+                            {
+                                newperson.Gender = Gender.Female;
+                                break;
+                            }
+                            case "м":
+                            case "m":
+                            {
+                                newperson.Gender = Gender.Female;
+                                break;
+                            }
+                            default:
+                            {
+                                throw new ArgumentException("Введён некорректный" +
+                                    " пол, введите м(m) или ж(w)!");
+                            }
                         }
                     }),
                 };
@@ -144,15 +131,14 @@ namespace Lr1
                     action.Invoke();
                     return;
                 }
-                catch (ArgumentOutOfRangeException exception)
+                catch (Exception exception)
                 {
-                    //TODO: duplication
-                    Console.WriteLine($"{exception.Message}");
-                }
-                catch (ArgumentException exception)
-                {
-                    //TODO: duplication
-                    Console.WriteLine($"{exception.Message}");
+                    var ex = exception.GetType();
+                    if (ex == typeof(ArgumentOutOfRangeException) || 
+                        ex == typeof(ArgumentException))
+                    { 
+                        Console.WriteLine(exception.Message); 
+                    }
                 }
             }
         }
