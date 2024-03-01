@@ -70,6 +70,26 @@ namespace Lr1
                         Console.Write($"Введите пол человека:");
                         string gender1 = Person.CheckEmptorNull(Console.ReadLine());
                         //TODO: switch-case
+                        //switch(gender1)
+                        //{
+                        //    case "ж":
+                        //    case "w":
+                        //    {
+                        //        newperson.Gender = Gender.Female;
+                        //        break;
+                        //    }
+                        //    case "м":
+                        //    case "m":
+                        //    {
+                        //        newperson.Gender = Gender.Female;
+                        //        break;
+                        //    }
+                        //    default:
+                        //    {
+                        //        throw new ArgumentException("Введён некорректный" +
+                        //            " пол, введите м(m) или ж(w)!");
+                        //    }
+                        //}
                         if (gender1 == "ж" || gender1 == "w")
                         {
                             newperson.Gender = Gender.Female;
