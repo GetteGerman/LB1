@@ -167,7 +167,7 @@ namespace Model
             Regex checkletter = new Regex(@"[^А-яA-z-]+");
             Regex rus = new Regex(@"[А-я]+");
             Regex eng = new Regex(@"[A-z]+");
-            if (!checkletter.IsMatch(name_surname))
+            if (checkletter.IsMatch(name_surname))
             {
                 throw new ArgumentException("Имя и фамилия должны содержать " +
                             "только русские или английскик буквы");

@@ -134,10 +134,10 @@ namespace Lr1
                 catch (Exception exception)
                 {
                     var ex = exception.GetType();
-                    if (ex == typeof(ArgumentOutOfRangeException) || 
+                    if (ex == typeof(ArgumentOutOfRangeException) ||
                         ex == typeof(ArgumentException))
-                    { 
-                        Console.WriteLine(exception.Message); 
+                    {
+                        Console.WriteLine(exception.Message);
                     }
                 }
             }
