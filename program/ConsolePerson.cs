@@ -32,7 +32,7 @@ namespace Lr1
                 new Action(() =>
                 {
                     Console.Write($"\nВведите имя человека: ");
-                    string name = Console.ReadLine();
+                    string name = Person.CheckEmptorNull(Console.ReadLine());
                     if (Person.Checktype(name))
                     {
                         newperson.Name = Person.ConvertFirstlatterToup(name) ;
@@ -43,7 +43,7 @@ namespace Lr1
                 new Action(() =>
                 {
                     Console.Write($"Введите фамилию человека: ");
-                    string surname = Console.ReadLine();
+                    string surname = Person.CheckEmptorNull(Console.ReadLine());
                     if (Person.Checktype(surname))
                     {
                         newperson.Surname =Person.ConvertFirstlatterToup(surname) ;
@@ -52,7 +52,7 @@ namespace Lr1
                 new Action(() =>
                 {
                     Console.Write($"Введите возраст человека:");
-                    bool result = ushort.TryParse(Console.ReadLine(),out ushort age);
+                    bool result = ushort.TryParse(Person.CheckEmptorNull(Console.ReadLine()),out ushort age);
                     if (result != true)
                     {
                         throw new ArgumentOutOfRangeException("Возраст должен быть" +
@@ -67,7 +67,7 @@ namespace Lr1
                 new Action(() =>
                 {
                     Console.Write($"Введите пол человека:");
-                    string gender1 = Console.ReadLine();
+                    string gender1 = Person.CheckEmptorNull(Console.ReadLine());
                     if (gender1 == "ж" || gender1 == "w")
                     {
                         newperson.Gender = Gender.Female;

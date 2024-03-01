@@ -188,6 +188,27 @@ namespace Model
         }
 
         /// <summary>
+        /// Проверка на пустую строку.
+        /// </summary>
+        /// <param name="value">Строка.</param>
+        /// <returns>Строку.</returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentException"></exception>
+        public static string CheckEmptorNull(string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentException("Введенный параметр не может быть null");
+            }
+
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Введенный параметр не может быть пустым");
+            }
+
+            return value;
+        }
+        /// <summary>
         /// изменения регистра первой буквы.
         /// </summary>
         /// <param name="word">изначальное слово.</param>
