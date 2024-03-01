@@ -17,22 +17,27 @@ namespace Model
         /// введенный возраст.
         /// </summary>
         private int _age;
+
         /// <summary>
         /// введенное имя.
         /// </summary>
         private string _name;
+
         /// <summary>
         /// введенная фамилия.
         /// </summary>
         private string _surname;
+
         /// <summary>
         /// максимальный возраст.
         /// </summary>
         private const int maxage=120;
+
         /// <summary>
         /// мнимальный возраст.
         /// </summary>
         private const int minage = 0;
+
         /// <summary>
         /// имя персоны.
         /// </summary>
@@ -42,6 +47,7 @@ namespace Model
             {
                 return _name;
             }
+
             set
             {
                 if (Checktype(value))
@@ -50,6 +56,7 @@ namespace Model
                 }
             }
         }
+
         /// <summary>
         /// фамилия персоны.
         /// </summary>
@@ -59,6 +66,7 @@ namespace Model
             {
                 return _surname;
             }
+
             set
             {
                 if (Checktype(value))
@@ -67,22 +75,26 @@ namespace Model
                 }
             }
         }
+
         /// <summary>
         /// возраст персоны.
         /// </summary>
         public int Age
-        { get
+        {
+            get
             {
                 return _age;
             }
+
             set
             {
                 if (CheckAge(value))
                 {
                     _age = value;
                 }
-            } 
+            }
         }
+
         /// <summary>
         /// Пол персоны.
         /// </summary>
@@ -96,7 +108,9 @@ namespace Model
         {
             return $"Имя: {Name}, Фамилия: {Surname}, Возраст: {Age}, Пол: {Gender}.";
         }
+
         /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
         /// Конструктор.
         /// </summary>
         /// <param name="name">имя персоны.</param>
@@ -107,19 +121,24 @@ namespace Model
         {
             _name = name;
             _surname = surname;
-            //TODO: check?
             _age = age;
             Gender = gender;
         }
+
         /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
         /// Конструктор по умолчанию.
         /// </summary>
-        public Person() : this ("Ivan", "Ivanov", 0, Gender.Male) {}
+        public Person()
+            : this("Ivan", "Ivanov", 0, Gender.Male)
+        {
+        }
+
         /// <summary>
-        /// проверка возраста на входимость в пределы
+        /// проверка возраста на входимость в пределы.
         /// </summary>
-        /// <param name="age"> возраст</param>
-        /// <returns> входит или нет</returns>
+        /// <param name="age"> возраст.</param>
+        /// <returns> входит или нет.</returns>
         public static bool CheckAge(int age)
         {
             if (age > minage & age < maxage)
@@ -131,10 +150,11 @@ namespace Model
                 throw new ArgumentOutOfRangeException("Значение возраста должно быть в диапазоне от 0 до 120");
             }
         }
+
         /// <summary>
-        /// Проверка на правильность впианных символов
+        /// Проверка на правильность впианных символов.
         /// </summary>
-        /// <param name="name_surname">проверяеый элемент</param>
+        /// <param name="name_surname">проверяеый элемент.</param>
         /// <returns>правильный ли тип введенной информации.</returns>
         public static bool Checktype(string name_surname)
         {
@@ -152,20 +172,21 @@ namespace Model
                 string[] words = name_surname.Split(new char[] { '-' });
                 string word1 = words[0];
                 string word2 = words[1];
-                if  (!((rus.IsMatch(word1) && rus.IsMatch(word2))||
+                if (!((rus.IsMatch(word1) && rus.IsMatch(word2)) ||
                     (eng.IsMatch(word1) && eng.IsMatch(word2))))
                 {
                     throw new ArgumentException("Имя/фамилия должны состоять только из русских " +
                         "или только из английскийх букв");
                 }
-                return true;
 
+                return true;
             }
             else
             {
                 return true;
             }
         }
+
         /// <summary>
         /// изменения регистра первой буквы.
         /// </summary>
@@ -173,7 +194,7 @@ namespace Model
         /// <returns>Измененный регистр слова.</returns>
         public static string ConvertFirstlatterToup(string word)
         {
-            word = word[0].ToString().ToUpper()+ word.Substring(1).ToLower();
+            word = word[0].ToString().ToUpper() + word.Substring(1).ToLower();
 
             Regex regex1 = new Regex(@"[-]");
             if (regex1.IsMatch(word))
@@ -185,8 +206,8 @@ namespace Model
                 word2 = word2[0].ToString().ToUpper() + word2.Substring(1).ToLower();
                 word = word1 + "-" + word2;
             }
+
             return word;
         }
     }
 }
-

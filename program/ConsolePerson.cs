@@ -33,9 +33,9 @@ namespace Lr1
                 {
                     Console.Write($"\nВведите имя человека: ");
                     string name = Console.ReadLine();
-                    if ( Person.Checktype(name))
+                    if (Person.Checktype(name))
                     {
-                        newperson.Name =Person.ConvertFirstlatterToup(name) ;
+                        newperson.Name = Person.ConvertFirstlatterToup(name) ;
 
                     }
 
@@ -44,25 +44,24 @@ namespace Lr1
                 {
                     Console.Write($"Введите фамилию человека: ");
                     string surname = Console.ReadLine();
-                    if ( Person.Checktype(surname))
+                    if (Person.Checktype(surname))
                     {
                         newperson.Surname =Person.ConvertFirstlatterToup(surname) ;
-
                     }
                 }),
                 new Action(() =>
                 {
                     Console.Write($"Введите возраст человека:");
                     bool result = ushort.TryParse(Console.ReadLine(),out ushort age);
-                    if(result != true)
+                    if (result != true)
                     {
                         throw new ArgumentOutOfRangeException("Возраст должен быть" +
                             " положительным числом, введите ещё раз!");
                     }
-                    if ( Person.CheckAge(age))
-                    {
-                        newperson.Age =age;
 
+                    if (Person.CheckAge(age))
+                    {
+                        newperson.Age = age;
                     }
                 }),
                 new Action(() =>
@@ -94,6 +93,7 @@ namespace Lr1
             }
 
         }
+
         /// <summary>
         /// Вывод всех персон входящих в лист.
         /// </summary>
@@ -108,6 +108,7 @@ namespace Lr1
                 Console.WriteLine(pers.GetInfo());
             }
         }
+
         /// <summary>
         /// запуск действий для ввода пользователем.
         /// </summary>
@@ -131,7 +132,5 @@ namespace Lr1
                 }
             }
         }
-
-
     }
 }

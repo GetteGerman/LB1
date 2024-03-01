@@ -40,8 +40,8 @@ namespace Model
             string[] maleSuranames = new string[]
             {
                      "Ланцов", "Костюк", "Морозов", "Фахи",
-                    "Бреккер",  "Смит", "Оретцев",
-                    "Роллинс", "Хаскель", "Безников", "Юл-Батаар",
+                     "Бреккер",  "Смит", "Оретцев",
+                     "Роллинс", "Хаскель", "Безников", "Юл-Батаар",
             };
 
             Random random = new();
@@ -65,7 +65,6 @@ namespace Model
             int age = random.Next(0, 100);
 
             return new Person(name, surname, age, gender);
-
         }
     }
 }

@@ -19,6 +19,6 @@ namespace Model
         /// <summary>
         /// Женский пол.
         /// </summary>
-        Female
+        Female,
     }
 }

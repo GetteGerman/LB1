@@ -17,11 +17,12 @@ namespace Demo
         {
             Console.WriteLine("Для отображения списков нажмите любую клавишу.\n");
             Console.ReadKey();
+
             // a.Создайте программно
             // два списка персон, в каждом из которых
             // будет по три человека.
             // b.Выведите содержимое каждого списка на экран с
-            //соответствующими подписями списков.
+            // соответствующими подписями списков.
             PersonList list1 = new PersonList();
             var list2 = new PersonList();
             Console.WriteLine("\t\t\tСписок 1.\n");
@@ -29,14 +30,14 @@ namespace Demo
             {
                 list1.Add(RandomPerson.GetRandomPerson());
                 list2.Add(RandomPerson.GetRandomPerson());
-                
             }
 
             ConsolePerson.Print(list1);
-             Console.WriteLine();
-            Console.WriteLine("\t\t\tСписок 2.\n");
-             ConsolePerson.Print(list2);
             Console.WriteLine();
+            Console.WriteLine("\t\t\tСписок 2.\n");
+            ConsolePerson.Print(list2);
+            Console.WriteLine();
+
             // c.Добавьте нового человека в первый список.
             Console.WriteLine("Добавим персону в 1-ый список. " +
                 "Для продолжениянажмите любую клавишу.");
@@ -57,7 +58,6 @@ namespace Demo
             Console.ReadKey();
 
             list2.Add(list1.FindByIndex(2));
-            
 
             Console.WriteLine("\nСписок №1:");
             ConsolePerson.Print(list1);
@@ -92,12 +92,6 @@ namespace Demo
             ConsolePerson.Print(list2);
 
             Console.ReadKey();
-
         }
-
     }
 }
-
-
-
-

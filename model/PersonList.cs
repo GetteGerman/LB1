@@ -43,7 +43,6 @@ namespace Model
         {
             _people.RemoveAt(index);
         }
-
         /// <summary>
         /// Удалить выбранный элемент списка.
         /// По фамилии.
