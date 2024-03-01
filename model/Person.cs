@@ -120,9 +120,9 @@ namespace Model
         /// <param name="gender">Гендер персоны.</param>
         public Person(string name, string surname, int age, Gender gender)
         {
-            _name = name;
-            _surname = surname;
-            _age = age;
+            Name = name;
+            Surname = surname;
+            Age = age;
             Gender = gender;
         }
 
