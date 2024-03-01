@@ -214,7 +214,7 @@ namespace Model
             return value;
         }
 
-        //TODO: rename
+        //TODO: rename+
         /// <summary>
         /// изменения регистра первой буквы.
         /// </summary>
