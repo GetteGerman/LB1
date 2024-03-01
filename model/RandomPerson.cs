@@ -16,6 +16,7 @@ namespace Model
         /// </summary>
         public static Person GetRandomPerson()
         {
+            //TODO: RSDN
             string[] femaleNames = new string[]
             {
                     "Алина", "Дуняша", "Женя", "Зоя",
@@ -61,7 +62,7 @@ namespace Model
                 default:
                     return new Person("Default", "Person", 0, Gender.Male);
             }
-
+            //TODO: duplication
             int age = random.Next(0, 100);
 
             return new Person(name, surname, age, gender);

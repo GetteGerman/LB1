@@ -37,6 +37,7 @@ namespace Model
         /// <summary>
         /// Удалять элементы по индексу.
         /// </summary>
+        /// //TODO: remove
         /// <param name="people">список персон.</param>
         /// <param name="index">индекс персоны для удалеия.</param>
         public void DeleteByIndex(int index)
@@ -47,6 +48,7 @@ namespace Model
         /// Удалить выбранный элемент списка.
         /// По фамилии.
         /// </summary>
+        /// //TODO: remove
         /// <param name="people">список персон.</param>
         /// <returns>количество удаленных записей. </returns>
         public int DeleteBySurname(string surname)
@@ -57,6 +59,7 @@ namespace Model
         /// <summary>
         /// Искать элемент по указанному индексу.
         /// </summary>
+        /// //TODO: remove
         /// <param name="people">заданный список.</param>
         /// <param name="index">искомый индекс.</param>
         public Person FindByIndex(int index)

@@ -28,11 +28,13 @@ namespace Model
         /// </summary>
         private string _surname;
 
+        //TODO: RSDN
         /// <summary>
         /// максимальный возраст.
         /// </summary>
-        private const int maxage=120;
+        private const int maxage = 120;
 
+        //TODO: RSDN
         /// <summary>
         /// мнимальный возраст.
         /// </summary>
@@ -47,9 +49,9 @@ namespace Model
             {
                 return _name;
             }
-
             set
             {
+                //BUG:
                 if (Checktype(value))
                 {
                     _name = ConvertFirstlatterToup(value);
@@ -66,9 +68,9 @@ namespace Model
             {
                 return _surname;
             }
-
             set
             {
+                //BUG:
                 if (Checktype(value))
                 {
                     _surname = ConvertFirstlatterToup(value);
@@ -85,7 +87,6 @@ namespace Model
             {
                 return _age;
             }
-
             set
             {
                 if (CheckAge(value))
@@ -141,12 +142,14 @@ namespace Model
         /// <returns> входит или нет.</returns>
         public static bool CheckAge(int age)
         {
+            //TODO:
             if (age > minage & age < maxage)
             {
                 return true;
             }
             else
             {
+                //TODO: RSDN
                 throw new ArgumentOutOfRangeException("Значение возраста должно быть в диапазоне от 0 до 120");
             }
         }
@@ -158,6 +161,7 @@ namespace Model
         /// <returns>правильный ли тип введенной информации.</returns>
         public static bool Checktype(string name_surname)
         {
+            //TODO: RSDN
             Regex tir = new Regex(@"[-]");
             Regex regex = new Regex(@"[А-я,A-z,-]+");
             Regex rus = new Regex(@"[А-я]+");
@@ -208,6 +212,8 @@ namespace Model
 
             return value;
         }
+
+        //TODO: rename
         /// <summary>
         /// изменения регистра первой буквы.
         /// </summary>
@@ -215,8 +221,10 @@ namespace Model
         /// <returns>Измененный регистр слова.</returns>
         public static string ConvertFirstlatterToup(string word)
         {
+            //TODO: завести локальную переменную
             word = word[0].ToString().ToUpper() + word.Substring(1).ToLower();
-
+            
+            //TODO: RSDN
             Regex regex1 = new Regex(@"[-]");
             if (regex1.IsMatch(word))
             {
