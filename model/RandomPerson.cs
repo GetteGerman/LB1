@@ -17,28 +17,28 @@ namespace Model
         public static Person GetRandomPerson()
         {
             //TODO: RSDN+
-            string[] femaleNames = new string[]
+            string[] femaleNames =
             {
                 "Алина", "Дуняша", "Женя", "Зоя",
                 "Инеж", "Марья", "Нина", "Тамара", "Надя",
                 "Танте", "Татьяна",
             };
 
-            string[] femaleSuranames = new string[]
+            string[] femaleSuranames =
             {
                 "Старкова", "Лазарева", "Сафина", "Назяленская",
                 "Гафа", "Хендрикс", "Зеник",  "Хелен",
                 "Ланцова",
             };
 
-            string[] maleNames = new string[]
+            string[] maleNames =
             {
                 "Бо", "Василий", "Давид", "Александр", "Джаспер",
                 "Илья", "Каз", "Колм", "Корнелис", "Пекка", "Пер",
                 "Мальен", "Матиас", "Николай", "Сергей", "Толя",
             };
 
-            string[] maleSuranames = new string[]
+            string[] maleSuranames =
             {
                 "Ланцов", "Костюк", "Морозов", "Фахи",
                 "Бреккер",  "Смит", "Оретцев",

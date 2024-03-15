@@ -68,6 +68,7 @@ namespace Model
             {
                 return _surname;
             }
+
             set
             {
                 //BUG:+
@@ -87,6 +88,7 @@ namespace Model
             {
                 return _age;
             }
+
             set
             {
                 if (CheckAge(value))
@@ -180,7 +182,8 @@ namespace Model
                 if (!((rus.IsMatch(word1) && rus.IsMatch(word2)) ||
                     (eng.IsMatch(word1) && eng.IsMatch(word2))))
                 {
-                    throw new ArgumentException("Имя/фамилия должны состоять только из русских " +
+                    throw new ArgumentException("Имя/фамилия должны состоять " +
+                        "только из русских " +
                         "или только из английскийх букв");
                 }
 
@@ -197,8 +200,8 @@ namespace Model
         /// </summary>
         /// <param name="value">Строка.</param>
         /// <returns>Строку.</returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.ArgumentException"></exception>
+        /// <exception cref="System.ArgumentException">
+        /// ошибко ввода нуля или пустого значения.</exception>
         public static string CheckEmptorNull(string value)
         {
             if (value == null)
@@ -223,8 +226,7 @@ namespace Model
         public static string ConvertFirstLetterToUp(string word)
         {
             //TODO: завести локальную переменную+
-            string bufferword=word;
-            bufferword=word[0].ToString().ToUpper() + word.Substring(1).ToLower();
+            string bufferword = word[0].ToString().ToUpper() + word.Substring(1).ToLower();
             //TODO: RSDN+
             Regex tire = new Regex(@"[-]");
             if (tire.IsMatch(bufferword))
