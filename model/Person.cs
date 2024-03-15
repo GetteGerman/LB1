@@ -145,7 +145,7 @@ namespace Model
         public static bool CheckAge(int age)
         {
             //TODO:+
-            if (age > Minage & age < Maxage)
+            if (age >= Minage && age <= Maxage)
             {
                 return true;
             }

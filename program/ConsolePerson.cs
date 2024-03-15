@@ -57,7 +57,7 @@ namespace Lr1
                         if (!parsedCorrectly)
                         {
                             throw new ArgumentOutOfRangeException("Возраст должен быть" +
-                                " положительным числом, введите ещё раз!");
+                                " положительным целым числом, введите ещё раз!");
                         }
 
                         if (Person.CheckAge(age))
