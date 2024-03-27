@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Adult:Person
+    public class Adult:AbstractPers
     {
+        /// <summary>
+        /// Минимальный возраст.
+        /// </summary>
+        public override int Minage => 18;
+
+        /// <summary>
+        /// Максимальный возраст.
+        /// </summary>
+        public override int Maxage => 120;
         /// <summary>
         /// Максимальное количество символов паспорта.
         /// </summary>
@@ -18,6 +27,7 @@ namespace Model
         /// Поле паспортных данных.
         /// </summary>
         private string _passport;
+
 
         /// <summary>
         /// Чтение и запись паспортных данных.
@@ -66,7 +76,7 @@ namespace Model
             var personInfo = GetBasePerson() + $"\nПаспорт: {Pasport}";
 
             personInfo += $"\nМесто работы: {Job}";
-            if (StateOfMarriage == StateOfMarriage.Married)
+            if (Marriage == Marriage.Married)
             {
                 personInfo += Gender == Gender.Male
                 ? $"\nСостояние брака: Женат"
@@ -79,7 +89,7 @@ namespace Model
                     : $"\nСостояние брака: Не замужем";
             }
 
-            if (StateOfMarriage == StateOfMarriage.Married)
+            if (Marriage == Marriage.Married)
             {
                 personInfo += Gender == Gender.Female
                     ? $"\nСупруг: {Spouse.Name} {Spouse.Surname}"
